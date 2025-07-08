@@ -22,12 +22,18 @@ public class EBook extends Book {
     }
 
     @Override
-    public double purchase(Customer customer) {
-        if (customer.getBalance() < getPrice()) {
+    public double purchase(Customer customer, int quantity) {
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Quantity must be positive.");
+        }
+        double totalPrice = getPrice() * quantity;
+        if (customer.getBalance() < totalPrice) {
             throw new IllegalStateException("Unfortunately, you do not have enough balance to complete this purchase.");
         }
-        customer.setBalance(customer.getBalance() - getPrice());
-        deliver(customer);
-        return getPrice();
+        customer.setBalance(customer.getBalance() - totalPrice);
+        for (int i = 0; i < quantity; i++) {
+            deliver(customer);
+        }
+        return totalPrice;
     }
 }

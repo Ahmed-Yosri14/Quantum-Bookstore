@@ -14,7 +14,7 @@ public abstract class Book {
 
     public abstract boolean isAvailable();
     public abstract void deliver(Customer customer);
-    public abstract double purchase(Customer customer);
+    public abstract double purchase(Customer customer, int quantity);
     public int getYearOfPublication() {
         return yearOfPublication;
     }

@@ -14,7 +14,7 @@ public class ShowcaseBook extends Book {
     }
 
     @Override
-    public double purchase(Customer customer) {
+    public double purchase(Customer customer, int quantity) {
         throw new IllegalStateException("This book is for display only and cannot be purchased. Please check our other available books!");
     }
 }

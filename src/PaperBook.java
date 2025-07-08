@@ -18,17 +18,23 @@ public class PaperBook extends Book{
     }
 
     @Override
-    public double purchase(Customer customer) {
-        if (!isAvailable()) {
-            throw new IllegalStateException("Sorry, this book is currently out of stock.");
+    public double purchase(Customer customer, int quantity) {
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Quantity must be positive.");
         }
-        if (customer.getBalance() < getPrice()) {
+        if (stock < quantity) {
+            throw new IllegalStateException("Sorry, not enough stock available.");
+        }
+        double totalPrice = getPrice() * quantity;
+        if (customer.getBalance() < totalPrice) {
             throw new IllegalStateException("Unfortunately, you do not have enough balance to complete this purchase.");
         }
-        reduceStock(1);
-        customer.setBalance(customer.getBalance() - getPrice());
-        deliver(customer);
-        return getPrice();
+        reduceStock(quantity);
+        customer.setBalance(customer.getBalance() - totalPrice);
+        for (int i = 0; i < quantity; i++) {
+            deliver(customer);
+        }
+        return totalPrice;
     }
 
     public void addStock(int quantity) {

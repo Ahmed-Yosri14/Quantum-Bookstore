@@ -40,11 +40,11 @@ public class Inventory {
         return removed;
     }
 
-    public double buyBook(String isbn, Customer customer) {
+    public double buyBook(String isbn, Customer customer, int quantity) {
         Book book = books.get(isbn);
         if (book == null) {
             throw new IllegalStateException("Book not available.");
         }
-        return book.purchase(customer);
+        return book.purchase(customer, quantity);
     }
 }
