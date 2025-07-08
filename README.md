@@ -51,6 +51,16 @@ assets/
    java -cp bin app.Main
    ```
 
+## Usage Notes
+- The `Inventory.buyBook` method now accepts a quantity parameter:
+  ```java
+  double paid = inventory.buyBook("001", customer, 3); // Buys 3 copies of the book with ISBN "001"
+  ```
+- The `purchase` method in all book types also accepts a quantity parameter.
+- The system checks for sufficient stock and customer balance for the requested quantity.
+- If the quantity is zero or negative, or if there is not enough stock or balance, a clear error message is shown.
+- Each purchase call is for a single transaction of the specified quantity.
+
 ## Design Details
 - **OOP Principles:**
   - Inheritance is used for different book types.
