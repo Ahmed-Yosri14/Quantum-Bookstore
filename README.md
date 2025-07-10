@@ -50,7 +50,18 @@ assets/
    ```sh
    java -cp bin app.Main
    ```
+## Program Output
+When you run the application, you'll see output similar to this:
 
+![Program Output](assets/ProgramOutput.PNG)
+
+The output demonstrates:
+- Adding different types of books to inventory
+- Creating customers with initial balances
+- Successful purchases with quantity validation
+- Error handling for insufficient stock or balance
+- Email delivery for eBooks
+- Shipping notifications for paper books
 ## Usage Notes
 - The `Inventory.buyBook` method now accepts a quantity parameter:
   ```java
